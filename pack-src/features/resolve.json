@@ -1,0 +1,119 @@
+{
+  "_id": "apfceResolve0001",
+  "name": "Решимость",
+  "type": "feat",
+  "img": "icons/magic/life/heart-glowing-red.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Решимость</strong> (1 уровень)</p><p>В вас есть глубокий запас решимости и силы воли, который помогает держаться в беде. Вы можете стать <strong>решимым</strong> на одну минуту бонусным действием.</p><p>Пока вы решимы, вы получаете следующие преимущества:</p><ul><li>Ваши текущие и максимальные хиты увеличиваются на пять, умноженное на ваш уровень охотника на магов.</li><li>Вы совершаете с преимуществом спасброски от заклинаний и магических эффектов.</li><li>Ваши атаки считаются магическими для преодоления снижения урона и иммунитета и наносят урон хитам, даже если у цели есть временные хиты.</li></ul><p>Решимость длится одну минуту и оканчивается раньше, если вы падаете без сознания или сами прекращаете её (действие не требуется).</p><p>Вы можете использовать это умение число раз, указанное в таблице класса (столбец <strong>Решимость</strong>), и восстанавливаете все потраченные использования после продолжительного отдыха.</p>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "Autistic Premades Flame of Changes Edition",
+      "revision": 1,
+      "rules": "2014"
+    },
+    "identifier": "resolve",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "requirements": "1-й уровень",
+    "uses": {
+      "spent": 0,
+      "max": "1",
+      "recovery": [
+        {
+          "period": "lr",
+          "type": "recoverAll"
+        }
+      ]
+    },
+    "activities": {
+      "apfceResAct00001": {
+        "_id": "apfceResAct00001",
+        "type": "utility",
+        "name": "Решимость",
+        "sort": 0,
+        "activation": {
+          "type": "bonus",
+          "value": 1,
+          "condition": "",
+          "override": false
+        },
+        "consumption": {
+          "targets": [
+            {
+              "type": "itemUses",
+              "target": "",
+              "value": "1",
+              "scaling": {
+                "mode": "",
+                "formula": ""
+              }
+            }
+          ],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "concentration": false,
+          "value": "1",
+          "units": "minute",
+          "special": "",
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "special": "",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "type": "",
+            "size": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "self",
+            "choice": false,
+            "special": ""
+          },
+          "override": false,
+          "prompt": false
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        },
+        "roll": {
+          "formula": "",
+          "name": "",
+          "prompt": false,
+          "visible": false
+        }
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "Autistic_Premades_Flame_of_Changes_Edition": {
+      "identifier": "resolve"
+    }
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "_id": "apfceExecutor001",
+  "name": "Executor of Judgement",
+  "type": "feat",
+  "img": "icons/magic/holy/prayer-hands-glowing-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Executor of Judgement</strong> (Level 3)</p><p>When you enter Rage, you manifest the Light’s blessing to punish the guilty:</p><ul><li>When you activate Rage, choose any number of creatures within 60 ft. and impart on them the dread of upcoming retribution. They make an Intelligence saving throw, becoming Frightened until the end of their next turn on failure.</li><li>Passive: when you roll for an Intimidation check, you can momentarily fill intended targets with the same sensation, adding +5 to the roll, a number of times equal to your proficiency bonus per short rest.</li><li>You manifest an array of golden chains around you, which can be commanded, as a part of the attack action, to attempt a Grapple against a creature within 15 (30 at level 10) ft. If you succeed, it is additionally moved within 5 ft. of you. You can Grapple a number of creatures without using your hands equal to your STR modifier. You count as one size larger for the purposes of grappling. You can also choose to do it this way when making a Grapple attempt.</li><li>Your eyes flare with holy Light, granting you additional 60 ft. of Dark-vision and ability to perceive through any normal or magical darkness.</li></ul>",
+      "chat": ""
+    },
+    "source": {
+      "custom": "Autistic Premades Flame of Changes Edition",
+      "revision": 1,
+      "rules": "2014"
+    },
+    "identifier": "executor-of-judgement",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "requirements": "Level 3",
+    "uses": {
+      "spent": 0,
+      "max": "@prof",
+      "recovery": [
+        {
+          "period": "sr",
+          "type": "recoverAll"
+        }
+      ]
+    },
+    "activities": {
+      "apfceJudgSave001": {
+        "_id": "apfceJudgSave001",
+        "type": "save",
+        "name": "Retribution",
+        "sort": 0,
+        "activation": {
+          "type": "special",
+          "value": 1,
+          "condition": "When you activate Rage",
+          "override": false
+        },
+        "consumption": {
+          "targets": [],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": "Dread of upcoming retribution. A failed Intelligence save leaves the creature Frightened until the end of its next turn."
+        },
+        "duration": {
+          "concentration": false,
+          "value": "",
+          "units": "inst",
+          "special": "",
+          "override": false
+        },
+        "effects": [
+          {
+            "_id": "apfceFrighten001",
+            "onSave": false
+          }
+        ],
+        "range": {
+          "units": "ft",
+          "value": "60",
+          "special": "",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "type": "",
+            "size": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "creature",
+            "choice": true,
+            "special": ""
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        },
+        "damage": {
+          "onSave": "none",
+          "parts": []
+        },
+        "save": {
+          "ability": ["int"],
+          "dc": {
+            "calculation": "str",
+            "formula": ""
+          }
+        }
+      },
+      "apfceJudgInti001": {
+        "_id": "apfceJudgInti001",
+        "type": "utility",
+        "name": "Intimidation",
+        "sort": 1,
+        "activation": {
+          "type": "special",
+          "value": 1,
+          "condition": "",
+          "override": false
+        },
+        "consumption": {
+          "targets": [
+            {
+              "type": "itemUses",
+              "target": "",
+              "value": "1",
+              "scaling": {
+                "mode": "",
+                "formula": ""
+              }
+            }
+          ],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": false
+        },
+        "description": {
+          "chatFlavor": "You may add +5 to an Intimidation check."
+        },
+        "duration": {
+          "concentration": false,
+          "value": "",
+          "units": "inst",
+          "special": "",
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "special": "",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "type": "",
+            "size": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "",
+            "choice": false,
+            "special": ""
+          },
+          "override": false,
+          "prompt": false
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        },
+        "roll": {
+          "formula": "",
+          "name": "",
+          "prompt": false,
+          "visible": false
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "_id": "apfceFrighten001",
+      "name": "Frightened",
+      "img": "systems/dnd5e/icons/svg/statuses/frightened.svg",
+      "type": "base",
+      "transfer": false,
+      "disabled": false,
+      "duration": {
+        "rounds": 2,
+        "seconds": 12
+      },
+      "statuses": ["frightened"],
+      "changes": [],
+      "flags": {
+        "Autistic_Premades_Flame_of_Changes_Edition": {
+          "retribution": true
+        },
+        "dae": {
+          "specialDuration": ["turnEnd"]
+        }
+      }
+    }
+  ],
+  "folder": "apfceArbiter0001",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "Autistic_Premades_Flame_of_Changes_Edition": {
+      "identifier": "executor-of-judgement"
+    }
+  }
+}
