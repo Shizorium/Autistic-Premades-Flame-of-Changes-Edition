@@ -1,0 +1,27 @@
+{
+  "id": "Autistic_Premades_Flame_of_Changes_Edition",
+  "title": "Autistic Premades Flame of Changes Edition",
+  "description": "A Foundry VTT module of premade automations.",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351"
+  },
+  "authors": [
+    {
+      "name": "Shizorium",
+      "url": "https://github.com/Shizorium"
+    }
+  ],
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system"
+      }
+    ]
+  }
+}
