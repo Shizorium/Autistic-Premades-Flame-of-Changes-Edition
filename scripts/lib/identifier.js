@@ -28,6 +28,13 @@ export const PACK_ENTRIES = [
     folderName: EXECUTOR_FOLDER_NAME,
     color: "#c9a227",
     json: EXECUTOR_JSON
+  },
+  {
+    itemId: "apfceBlackMask01",
+    folderId: "apfceItems000001",
+    folderName: "Предметы",
+    color: "#35313d",
+    json: `modules/${MODULE_ID}/pack-src/items/black-hundred-mask.json`
   }
 ];
 

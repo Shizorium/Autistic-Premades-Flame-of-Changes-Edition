@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../lib/identifier.js";
 import {
-  clampExhaustion, effectExhaustionLevel, exhaustionEffectData, EXHAUSTION_PATH,
+  clampExhaustion, effectExhaustionLevel, exhaustionEffectData, exhaustionEnabled, EXHAUSTION_PATH,
   isExhaustionEffect, isExhaustionPreset, setUpdateValue, SYNC_OPTION, updateValue
 } from "./config.js";
 
@@ -20,6 +20,13 @@ function localChange(options, userId) {
 
 export function setExhaustion(actor, level) {
   if (!supportsExhaustion(actor) || !actor.isOwner) return Promise.resolve();
+  // Other automations (including form changes) still use the API with native rules.
+  if (!exhaustionEnabled()) {
+    const value = Number(level);
+    if (!Number.isFinite(value)) return Promise.resolve();
+    const max = CONFIG.DND5E.conditionTypes.exhaustion.levels;
+    return actor.update({ [EXHAUSTION_PATH]: Math.min(max, Math.max(0, Math.trunc(value))) });
+  }
   const key = actor.uuid;
   const previous = pending.get(key) ?? Promise.resolve();
   const task = previous.catch(() => {}).then(() => synchronize(actor, clampExhaustion(level)));

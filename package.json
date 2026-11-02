@@ -1,8 +1,9 @@
 {
   "name": "autistic-premades-flame-of-changes-edition",
+  "version": "0.0.4",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/exhaustion.test.js && node tests/auriandria.test.js"
+    "test": "node tests/exhaustion.test.js && node tests/exhaustion-toggle.test.js && node tests/auriandria.test.js && node tests/black-hundred-mask.test.js"
   }
 }

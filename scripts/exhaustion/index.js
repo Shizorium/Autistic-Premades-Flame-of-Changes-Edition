@@ -1,5 +1,5 @@
 import { MODULE_ID } from "../lib/identifier.js";
-import { registerExhaustionSettings } from "./config.js";
+import { exhaustionEnabled, initializeExhaustionMode, registerExhaustionSettings } from "./config.js";
 import { reconcileExhaustionActors, registerExhaustionEffects, setExhaustion } from "./effects.js";
 import { ensureExhaustionPack } from "./compendium.js";
 import { registerExhaustionRolls } from "./rolls.js";
@@ -11,6 +11,8 @@ export function initExhaustion() {
   registerExhaustionSettings(() => {
     if (game.ready) void refreshExhaustion();
   });
+  initializeExhaustionMode();
+  if (!exhaustionEnabled()) return;
   registerExhaustionSheets();
   Hooks.once("setup", () => {
     configureExhaustionRules();
@@ -21,6 +23,10 @@ export function initExhaustion() {
 
 export function refreshExhaustion() {
   refresh = refresh.catch(() => {}).then(async () => {
+    if (!exhaustionEnabled()) {
+      await configureTidyExhaustion();
+      return;
+    }
     configureExhaustionRules();
     await configureTidyExhaustion();
     await reconcileExhaustionActors();

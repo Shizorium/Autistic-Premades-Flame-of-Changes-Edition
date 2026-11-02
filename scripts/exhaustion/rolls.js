@@ -1,8 +1,8 @@
-import { clampExhaustion, exhaustionPenalty, ROLL_KEY, ROLL_PART } from "./config.js";
+import { clampExhaustion, exhaustionEnabled, exhaustionPenalty, ROLL_KEY, ROLL_PART } from "./config.js";
 
 // Keep the penalty as an actual, labelled roll term, never a modification of a result.
 export function addExhaustionToRoll(actor, parts, data) {
-  if (!actor || !Array.isArray(parts) || !data) return;
+  if (!exhaustionEnabled() || !actor || !Array.isArray(parts) || !data) return;
   for (let i = parts.length - 1; i >= 0; i--) {
     if (parts[i] === "@exhaustion" || String(parts[i]).includes(`@${ROLL_KEY}`)) parts.splice(i, 1);
   }

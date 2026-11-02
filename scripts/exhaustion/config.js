@@ -6,6 +6,17 @@ export const SYNC_OPTION = "apfceExhaustionSync";
 export const ROLL_KEY = "apfceExhaustion";
 export const ROLL_PART = `@${ROLL_KEY}[Истощение]`;
 
+let enabledForSession;
+
+// A reload is needed because the module replaces system methods during setup.
+export function exhaustionEnabled() {
+  return enabledForSession ?? game.settings.get(MODULE_ID, "exhaustionEnabled") !== false;
+}
+
+export function initializeExhaustionMode() {
+  enabledForSession = game.settings.get(MODULE_ID, "exhaustionEnabled") !== false;
+}
+
 // Hooks may receive either expanded document data or dotted update keys.
 export function updateValue(data, path) {
   return Object.prototype.hasOwnProperty.call(data, path) ? data[path] : foundry.utils.getProperty(data, path);
@@ -17,6 +28,14 @@ export function setUpdateValue(data, path, value) {
 }
 
 export function registerExhaustionSettings(onChange) {
+  game.settings.register(MODULE_ID, "exhaustionEnabled", {
+    name: "Истощение: включить систему",
+    hint: "Включает систему истощения Flame of Changes с настраиваемыми штрафами к d20. Если выключено, используются штатные правила D&D 5e. Изменение применяется после перезагрузки мира.",
+    scope: "world", config: true, type: Boolean, default: true, requiresReload: true
+  });
+  game.settings.register(MODULE_ID, "exhaustionTidyBackup", {
+    scope: "world", config: false, type: Object, default: {}
+  });
   game.settings.register(MODULE_ID, "exhaustionMaxLevel", {
     name: "Истощение: максимум уровней",
     hint: "Максимальный уровень истощения (1–100). По умолчанию — 10. Уровень даёт только штраф к d20, включая максимальный.",
@@ -87,7 +106,7 @@ export function exhaustionEffectData(level, { id, config = exhaustionConfig() } 
 
 export function effectExhaustionLevel(effect) {
   const own = effect?.flags?.[MODULE_ID];
-  const level = own?.exhaustionLevel ?? effect?.flags?.dnd5e?.exhaustionLevel;
+  const level = effect?.flags?.dnd5e?.exhaustionLevel ?? own?.exhaustionLevel;
   return Number.isFinite(level) ? level : 1;
 }
 
